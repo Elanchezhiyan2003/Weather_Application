@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Application</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gradient-to-r from-blue-400 via-orange-400 to-blue-100 bg-opacity-75">
+    <div class="">
+        <div class="sticky top-3 items-center right-10 left-5 pb-5 ">
+            <h1 class="text-center font-custom text-5xl text-gray-900 text-opacity-30 ">Weather Condition</h1>
+        </div>
+        <div class="absolute  h-600 w-30 -top-5 right-0 left-20 pt-20 pr-20  text-2xl  text-yellow-400">
+            <h1 id="celsius-fahrenheit"></h1>
+            <p id="main-name"></p>
+            <img src="" alt="" id="main-img">
+        </div>
+        <div class="absolute inset-0 z-0  mb-20 mt-20 ml-5 pt-0 pl-9 -pr-2 transform-left rotate-90">
+            <img class="z-50" src="/images/mist.png" alt="">
+        </div>
+        <div class=" relative z-10 w-200 h-500 bg-rgba(500, 197, 524, 900) m-10  py-4">
+            <div class="m-20 flex border-red-800">
+                <input  type="text" name="" id="city-input" placeholder="Search location"  class="bg-blue-400 bg-opacity-40 mx-12 my-10 rounded-2xl text-center text-blue-50  border-none outline-none placeholder-blue-200 focus:outline-none focus:ring focus:border-blue-300">
+                  <button class="" onclick="searchCity()"><svg class="h-10 w-7 -ml-8 text-blue-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m15.75 15.75-2.489-2.489m0 0a3.375 3.375 0 1 0-4.773-4.773 3.375 3.375 0 0 0 4.774 4.774ZM21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                  </svg></button>
+    
+                </div>
+                
+                <div class=" absolute borderv bg-blue-400 bg-opacity-5 rounded  border-blue-500 border-opacity-100 h-600 w-20 top-20 right-0 left-10 mt-10 mr-20  text-2xl">
+                    <p class="text-sm pb-1 text-gray-900 text-opacity-100 " id="current-time">12:35 AM</p>
+                    <p class="text-sm text-gray-900" id="current-date">16-09-2024</p>
+                    
+                </div>
+            
+            <div class="-mt-10 ml-14 -mr-5 pl-3 pt-0  absolute">
+                <h1 class="text-white text-2xl">Today's Highlights</h1>
+            </div>
+            <div class="flex flex-row flex-wrap gap-9 mx-20 ">
+                <div class="box-border border-0 bg-blue-400 bg-opacity-20 h-32 w-32 p-4 rounded-3xl ">
+                    <p class="py-2 px-3 ml-1 -mt-3 mb-0">Humidity</p>
+                    <img class="w-20 h-10 py-1 px-3 ml-1" src="/images/humidity.png" alt="">
+                    <h1 id="Humidity" class="py-2 px-7"></h1>
+                </div>
+                <div class="box-border border-0 bg-blue-400 bg-opacity-20 h-32 w-33 p-4 rounded-3xl ">
+                    <p class="py-2 px-4 ml-1 mb-1 -mt-3">Wind Speed</p>
+                    <img class="w-20 h-11 py-1 px-5 py-1 ml-4 -mt-1 object-contain" src="/images/wind.png" alt="">
+                    <h1 id="wind" class="py-0  px-10"></h1>
+                </div>
+                <div class="box-border border-0 bg-blue-400 bg-opacity-20 h-32 w-33 p-4 rounded-3xl ">
+                    <p class="py-0 px-3 ml-1 mb-1 mt-3"></p>
+                    <div class="flex">
+                        <img class="w-20 h-10 -ml-6 object-contain" src="/images/sunrise.png" alt="">
+                        <div class="text-xs">
+                            <p id="riseDate">--:-- --</p>
+                            <p>Sunrise</p>
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <div>
+                            <img class="w-20 h-10 -ml-4 object-contain" src="/images/sunset.png" alt="">
+                        </div>
+                        <div class="text-xs -ml-2">
+                            <p id="sunDate">--:-- --</p>
+                            <p>Sunset</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-border border-0 bg-blue-400 bg-opacity-20 h-32 w-32 p-4 rounded-3xl ">
+                    <p class="py-0 px-3 ml-1 -mt-1">Clouds</p>
+                    <img class="w-20 h-14 py-1 px-5 py-0 -mt-3 ml-1 -mt-1 object-contain" src="/images/clouds.png" alt="">
+                    <h1 id="cloud" class="py-0 px-7 "></h1>
+                </div>
+                <div class="box-border border-0 bg-blue-400 bg-opacity-20 h-32 w-32 p-4 rounded-3xl ">
+                    <p class="py-2 px-3 ml-1 mb-1 -mt-3">Pressure</p>
+                    <img class="w-20 h-20 py-0 px-3 ml-1 -mt-7 object-contain" src="/images/pressure.png" alt="">
+                    <h1 id="Pressure" class="py-3 px-5 -mt-5"></h1>
+                </div>
+            </div>           
+        </div>
+    
+        <div class="-mt-10 ml-14 -mr-5 pl-12 pt-5  absolute">
+            <h1 class="text-white text-2xl">5 day forecast</h1>
+        </div>
+    
+        <div id="days-container" class="flex flex-row flex-wrap gap-8 px-20 ml-9 py-5">
+            <div class="box-border border-0 bg-blue-400 bg-opacity-20 h-32 w-32 p-4 rounded-3xl ">
+                <p class=" weather py-0 px-3 ml-1 -mt-1" id="day1"></p>
+                <img class="w-20 h-14 py-1 px-5 py-0 -mt-3 ml-1 -mt-1 object-contain" src="/images/clouds.png" alt="">
+                <div id="day1Min" class="py-0 px-7"></div>
+            </div>
+            <div class="box-border border-0 bg-blue-400 bg-opacity-20 h-32 w-32 p-4 rounded-3xl ">
+                <p class=" weather py-0 px-3 ml-1 -mt-1" id="day2"></p>
+                <img class="w-20 h-14 py-1 px-5 py-0 -mt-3 ml-1 -mt-1 object-contain" src="/images/clouds.png" alt="">
+                <div id="day2Min" class="py-0 px-7"></div>
+            </div>
+            <div class="box-border border-0 bg-blue-400 bg-opacity-20 h-32 w-32 p-4 rounded-3xl ">
+                <p class=" weather py-0 px-3 ml-1 -mt-1" id="day3"></p>
+                <img class="w-20 h-14 py-1 px-5 py-0 -mt-3 ml-1 -mt-1 object-contain" src="/images/clouds.png" alt="">
+                <p id="day3Min" class="minValues py-0 px-7 "></p>
+            </div>
+            <div class="box-border border-0 bg-blue-400 bg-opacity-20 h-32 w-32 p-4 rounded-3xl ">
+                <p class=" weather py-0 px-3 ml-1 -mt-1" id="day4"></p>
+                <img class="w-20 h-14 py-1 px-5 py-0 -mt-3 ml-1 -mt-1 object-contain" src="/images/clouds.png" alt="">
+                <p id="day4Min" class="minValues py-0 px-7 "></p>
+            </div>
+            <div class="box-border border-0 bg-blue-400 bg-opacity-20 h-32 w-32 p-4 rounded-3xl ">
+                <p class=" weather py-0 px-3 ml-1 -mt-1" id="day5"></p>
+                <img class="w-20 h-14 py-1 px-5 py-0 -mt-3 ml-1 -mt-1 object-contain" src="/images/clouds.png" alt="">
+                <p id="day5Min" class="minValues py-0 px-7 "></p>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
